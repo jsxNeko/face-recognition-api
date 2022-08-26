@@ -43,8 +43,7 @@ app.put('/image', (req,res) => {image.handleEntries(req, res, db)})
 app.post('/imageurl', (req,res) => {image.handleApiCall(req, res, process.env.CLARIFAIAPI)})
 
 app.get('/', (req,res) => {
-	db('users').returning('name')
-	.then(user => res.json(user))
+	res.send('helloo')
 })
 
 
