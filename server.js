@@ -14,7 +14,7 @@ const db = require('knex')({
   version: '7.2',
   connection: {
     host : process.env.HOST,
-    port : process.env.PORT,
+    port : process.env.LOCALPORT,
     user : 'postgres',
     password : process.env.DBSECRET,
     database : 'smart-brain'
@@ -48,6 +48,6 @@ app.get('/', (req,res) => {
 })
 
 
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
 	console.log('Server listening...')
 })
