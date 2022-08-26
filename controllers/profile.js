@@ -3,7 +3,6 @@ const handleUpdate = (req, res, db, bcrypt) => {
 	const hash = bcrypt.hashSync(password, 8)
 
 	if(password === '' || password.length === 0) {
-		console.log('not true no password set')
 	 	db.select('*')
 	 	.from('users')
 	 	.where({'id':id})
@@ -65,6 +64,8 @@ const handleUpdate = (req, res, db, bcrypt) => {
 				})
 				.catch(err => res.json(err))
 			})
+		} else if(password.length < 6) { 
+			return res.status(400).json({'error':'Password must be 6 characters or more'})
 		} else {
 			return res.status(400).json({'error':'Passwords must be matching in both fields.'})
 		}
