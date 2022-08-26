@@ -25,6 +25,7 @@ const handleUpdate = (req, res, db, bcrypt) => {
 		 			})
 		 			.catch(err => res.status(400).json({'error':'Unable to update profile completely. Please contact us for further support.'}))
 		 		})
+		 		.catch(err => res.status(400).json({'error':err}))
 	 		} else {
 	 			return db.select('*')
 	 			.from('users')
@@ -35,7 +36,7 @@ const handleUpdate = (req, res, db, bcrypt) => {
 	 			.catch(err => res.status(400).json({'error':'Something went wrong.'}))
 	 		}
 	 	})
-	 	.catch(err => err => res.json(err))
+	 	.catch(err => res.json(err))
   	} else {
   		if (password === confirmPassword){
 			db.select('*')
