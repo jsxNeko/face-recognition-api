@@ -64,6 +64,7 @@ const handleUpdate = (req, res, db, bcrypt) => {
 				})
 				.catch(err => res.json(err))
 			})
+			.catch(err => res.json(err))
 		} else if(password.length < 6) { 
 			return res.status(400).json({'error':'Password must be 6 characters or more'})
 		} else {
