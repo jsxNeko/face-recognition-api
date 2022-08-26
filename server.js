@@ -14,7 +14,9 @@ const db = require('knex')({
   version: '7.2',
   connection: {
     connectionString : process.env.DATABASE_URL,
-    rejectUnauthorized: false
+    ssl: {
+    	rejectUnauthorized: false
+    }
   }
 });
 const app = express();
