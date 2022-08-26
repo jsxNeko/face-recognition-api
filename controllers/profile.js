@@ -12,6 +12,14 @@ const handleUpdate = (req, res, db, bcrypt) => {
 	 	})
 	 	.then(update => {
 	 		if(oldEmail !== email){
+	 			db.select('*')
+		 		.from('login')
+		 		.where({'email':email})
+		 		.then((user) => {
+		 			if(user)
+		 				return res.json({'error':'Email already exist'})
+		 		})
+
 		 		db.select('*')
 		 		.from('login')
 		 		.where({'email': oldEmail})
@@ -36,7 +44,7 @@ const handleUpdate = (req, res, db, bcrypt) => {
 	 			.catch(err => res.status(400).json({'error':'Something went wrong.'}))
 	 		}
 	 	})
-	 	.catch(err => res.json(err))
+	 	.catch(err => res.status(400).json(err))
   	} else {
   		if (password === confirmPassword){
 			db.select('*')
@@ -61,9 +69,9 @@ const handleUpdate = (req, res, db, bcrypt) => {
 					.then(user => {
 						res.json(user[0])
 					})
-					.catch(err => res.json(err))
+					.catch(err => res.status(400).json(err))
 				})
-				.catch(err => res.json(err))
+				.catch(err => res.status(400).json(err))
 			})
 			.catch(err => res.status(400).json({'error':err}))
 		} else if(password.length < 6) { 
