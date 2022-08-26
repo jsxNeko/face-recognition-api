@@ -41,7 +41,7 @@ app.put('/image', (req,res) => {image.handleEntries(req, res, db)})
 
 app.post('/imageurl', (req,res) => {image.handleApiCall(req, res, process.env.CLARIFAIAPI)})
 
-app.get('/', (req,res) => {res.send('Hello')})
+app.get('/', (req,res) => {res.send('HOSTING')})
 
 
 app.listen(process.env.PORT || 3000, () => {
