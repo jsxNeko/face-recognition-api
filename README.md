@@ -3,4 +3,4 @@ The server includes validation, implementation to PostreSQL for storing user dat
 
 ## Client-Side:
 
-https://github.com/serenuy/facial-recognition-app
+https://github.com/jsxNeko/facial-recognition-app
